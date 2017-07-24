@@ -43,7 +43,7 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function register()
     {
-        $this->app->bind('vgwrap', function ($app) {
+        $this->app->bind('vgwrap', function($app) {
             return new VGWrapClient(config('vgwrap.api-key'));
         });
     }
