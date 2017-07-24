@@ -205,9 +205,8 @@ class VGWrapClient
 
     protected function parseResponse($response)
     {
-        $this->response = json_decode($response, TRUE);
+        $this->response = json_decode($response, true);
 
         return $this->response;
     }
-
 }

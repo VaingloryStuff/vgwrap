@@ -26,5 +26,4 @@ class Facade extends IlluminateFacade
     {
         return 'vgwrap';
     }
-
 }
