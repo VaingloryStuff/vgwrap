@@ -2,9 +2,7 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
+[![StyleCI][ico-styleci]][link-styleci]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 A Laravel wrapper for the Vainglory API
@@ -68,15 +66,11 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 [ico-version]: https://img.shields.io/packagist/v/agangofkittens/vgwrap.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/agangofkittens/vgwrap/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/agangofkittens/vgwrap.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/agangofkittens/vgwrap.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/agangofkittens/vgwrap.svg?style=flat-square
+[ico-styleci]: https://styleci.io/repos/98232070/shield
 
 [link-packagist]: https://packagist.org/packages/agangofkittens/vgwrap
-[link-travis]: https://travis-ci.org/agangofkittens/vgwrap
-[link-scrutinizer]: https://scrutinizer-ci.com/g/agangofkittens/vgwrap/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/agangofkittens/vgwrap
 [link-downloads]: https://packagist.org/packages/agangofkittens/vgwrap
 [link-author]: https://github.com/agangofkittens
 [link-contributors]: ../../contributors
+[link-styleci]: https://styleci.io/repos/98232070
