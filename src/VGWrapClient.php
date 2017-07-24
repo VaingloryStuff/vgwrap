@@ -6,11 +6,10 @@
  * Time: 7:19 PM
  */
 
-namespace agangofkittens\VGWrap;
+namespace agangofkittens\vgwrap;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
-use agangofkittens\VGWrap\VGWrapException as VGWrapException;
 
 /**
  * Class VGWrapClient
@@ -174,7 +173,7 @@ class VGWrapClient
     public function __call($name, $arguments)
     {
         if (in_array($name, self::$validCallbacks)) {
-            return $this->doRequest($arguments);
+            return $this->doRequest($name, $arguments);
         }
     }
 
@@ -190,12 +189,23 @@ class VGWrapClient
         $this->errorMessage = $message;
     }
 
-    protected function doRequest(array $params)
+    protected function doRequest($call, array $params)
     {
         // Validate
         if (!$this->getAPIkey()) {
             throw new VGWrapException("You must submit the API key");
         }
+
+        switch ($call) {
+            case 'getPlayerById':
+                // code
+                break;
+            case 'getPlayerByName':
+                // code
+                break;
+            // etc. I guess?
+        }
+
         // Run the call
         $response = $this->getClient()->get(self::END_POINT, +$params); // wat.
         $this->response = $response; // do something with it, idk

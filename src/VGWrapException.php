@@ -6,7 +6,7 @@
  * Time: 7:06 PM
  */
 
-namespace agangofkittens\VGWrap;
+namespace agangofkittens\vgwrap;
 
 use Exception;
 

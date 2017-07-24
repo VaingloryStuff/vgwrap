@@ -9,7 +9,6 @@
 namespace agangofkittens\vgwrap;
 
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
-use agangofkittens\vgwrap\VGWrapClient as VGWrapClient;
 use Config;
 
 class ServiceProvider extends IlluminateServiceProvider
@@ -31,7 +30,7 @@ class ServiceProvider extends IlluminateServiceProvider
         // Publish config files
         $this->publishes(
             [
-                __DIR__ . '/../config/config.php' => config_path('vgwrap.php'),
+                __DIR__ . '/config/config.php' => config_path('vgwrap.php'),
             ], 'config'
         );
     }
