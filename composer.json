@@ -1,0 +1,53 @@
+{
+  "name": "agangofkittens/vgwrap",
+  "type": "library",
+  "description": "Laravel wrapper for Vainglory API",
+  "keywords": [
+    "agangofkittens",
+    "vgwrap"
+  ],
+  "homepage": "https://github.com/agangofkittens/vgwrap",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "agangofkittens",
+      "email": "agangofkittens@gmail.com",
+      "homepage": "https://github.com/agangofkittens",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/agangofkittens/vgwrap/issues"
+  },
+  "require": {
+    "php": "~5.6|~7.0",
+    "guzzlehttp/guzzle": "6.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0||~5.0||~6.0",
+    "squizlabs/php_codesniffer": "^2.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "agangofkittens\\vgwrap\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "agangofkittens\\vgwrap\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+    "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
