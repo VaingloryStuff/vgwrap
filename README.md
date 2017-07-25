@@ -50,15 +50,22 @@ At the end of `config/app.php` add `'VGWrap' => agangofkittens\vgwrap\Facade::cl
 ],
 ```
 
+Then publish the config file:
+``` shell
+$ php artisan vendor:publish
+```
+
+Then set your [API key](https://developer.vainglorygame.com/) by updating the `api-id` value in `config/vgwrap.php` or your `.env` file.
+
 ## Usage
 
 ``` php
 // Fetch a player by ID
-$response = VGWrap::get('eu/player/id');
+$response = \VGWrap::get('eu/player/id');
 $player = json_decode($response->getBody()->getContents());
 
 // Or using a shortcut
-$response = VGWrap::getData('eu/player/id');
+$response = \VGWrap::getData('eu/player/id');
 ```
 
 ## Change log
