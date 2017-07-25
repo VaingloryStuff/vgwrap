@@ -8,215 +8,156 @@
 
 namespace agangofkittens\vgwrap;
 
-use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\ClientInterface as GuzzleClientInterface;
+use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class VGWrapClient
+ *
+ * Simple PHP client to interact with the Vainglory API
+ *
+ * @method ResponseInterface get($uri, array $options = [])
+ * @method ResponseInterface head($uri, array $options = [])
+ * @method ResponseInterface put($uri, array $options = [])
+ * @method ResponseInterface post($uri, array $options = [])
+ * @method ResponseInterface patch($uri, array $options = [])
+ * @method ResponseInterface delete($uri, array $options = [])
+ *
  * @package agangofkittens\vgwrap
  * @author agangofkittens <agangofktitens@gmail.com>
  */
 class VGWrapClient
 {
     /**
-     * Vainglory API endpoint
-     * @var
+     * @var \GuzzleHttp\Client
      */
-    const END_POINT = 'https://api.dc01.gamelockerapp.com/';
+    private $client;
+
+    protected $api_key;
+
+    protected $baseURL;
 
     /**
-     * @var object GuzzleClient
+     * @param $api_key
+     * @param array
      */
-    protected $client;
-
-    /**
-     * @var string API_KEY
-     */
-    protected $API_KEY;
-
-    /**
-     * @var int
-     */
-    protected $errorCode = 0;
-
-    /**
-     * @var string
-     */
-    protected $errorMessage = null;
-
-    /**
-     * @var array
-     */
-    protected $response;
-
-    /**
-     * @var array
-     */
-    protected $results;
-
-    /**
-     * shards
-     * @var array
-     */
-    public static $shards = [
-        'na' => 'shards/na/',
-        'eu' => 'shards/eu/',
-        'sa' => 'shards/sa/',
-        'ea' => 'shards/ea/',
-        'sg' => 'shards/sg/',
-        'tournament-na' => 'shards/tournament-na',
-        'tournament-eu' => 'shards/tournament-eu/',
-        'tournament-sa' => 'shards/tournament-sa',
-        'tournament-ea' => 'shards/tournament-ea/',
-        'tournament-sg' => 'shards/tournament-sg/'
-    ];
-
-    public static $validCallbacks = [
-        'getPlayerById'
-        // ...
-    ];
-
-    /**
-     * VGWrapClient constructor.
-     * @param $API_KEY
-     */
-    public function __construct($API_KEY)
+    public function __construct($api_key, $baseURL)
     {
-        $this->setAPIkey($API_KEY);
+        $this->setAPIkey($api_key);
+        $this->setbaseURL($baseURL);
+    }
+
+    /**
+     * Set API key
+     *
+     * @param $api_key
+     * @return mixed
+     */
+    public function setAPIkey($api_key)
+    {
+        return ($this->api_key = $api_key);
+    }
+    /**
+     * @return string API_KEY
+     */
+    public function getAPIkey()
+    {
+        return $this->api_key;
+    }
+
+    /**
+     * Set base URL
+     *
+     * @param $baseURL
+     * @return mixed
+     */
+    public function setBaseURL($baseURL)
+    {
+        return ($this->baseURL = $baseURL);
+    }
+
+    /**
+     * Get base URL
+     *
+     * @return mixed
+     */
+    public function getBaseURL()
+    {
+        return $this->api_key;
     }
 
     /**
      * Set client
-     * @param GuzzleClientInterface|object $client
-     * @return object
+     *
+     * @param ClientInterface $client
+     * @return $this
      */
-    public function setClient(GuzzleClientInterface $client)
+    public function setClient(ClientInterface $client)
     {
         $this->client = $client;
-
         return $this;
     }
 
     /**
-     * Get GuzzleClient, create it if it's null.
-     * @return object
+     * Get GuzzleClient, create if it's null
+     *
+     * @param array $config
+     * @return Client
      */
-    public function getClient()
+    public function getClient(array $config = [])
     {
+        $config = array_merge($config, [
+            'base_uri' => $this->getBaseURL(),
+            'headers' => [
+                'Authorization' => $this->getAPIkey(),
+                'Accept' => 'application/vnd.api+json',
+                'Accept-Encoding' => 'gzip'
+            ]
+
+        ]);
+
         if (!$this->client) {
-            $this->client = new GuzzleClient(array('defaults' => array('allow_redirects' => false, 'cookies' => true)));
+            $this->client = new Client($config);
         }
 
         return $this->client;
     }
 
     /**
-     * @param string $API_KEY
-     * @return string API_KEY
+     * Shortcut
+     *
+     * @param $uri
+     * @param array $options
+     * @return mixed
      */
-    public function setAPIkey($API_KEY)
+    public function getData($uri, $options = [])
     {
-        return ($this->API_KEY = $API_KEY);
+        return json_decode($this->getClient()->get($uri, $options)->getBody()->getContents());
     }
 
     /**
-     * @return string API_KEY
+     * Perform a request
+     *
+     * @param $method
+     * @param string $uri
+     * @param array $options
+     * @return mixed|ResponseInterface
      */
-    public function getAPIkey()
+    public function request($method, $uri = '', array $options = [])
     {
-        return $this->API_KEY;
+        return $this->client->request($method, $uri, $options);
     }
 
     /**
-     * Check if the last request was successful
-     * @return bool
+     * Forward any other call to guzzle client.
+     *
+     * @param $method
+     * @param $parameters
+     * @return mixed
      */
-    public function isSuccessful()
+    public function __call($method, $parameters)
     {
-        return (bool)((int)$this->errorCode === 0);
-    }
-
-    /**
-     * return the status code from the last call
-     * @return int
-     */
-    public function getStatusCode()
-    {
-        return $this->errorCode;
-    }
-
-    /**
-     * return the status message from the last call
-     * @return string
-     */
-    public function getStatusMessage()
-    {
-        return $this->errorMessage;
-    }
-
-    /**
-     * return the results array from the call
-     * @return array
-     */
-    public function getResults()
-    {
-        return $this->results;
-    }
-
-    /**
-     * magic method to invoke the correct API call
-     * if the passed name is within the valid callbacks
-     * @param string $name
-     * @param array $arguments
-     * @return array
-     */
-    public function __call($name, $arguments)
-    {
-        if (in_array($name, self::$validCallbacks)) {
-            return $this->doRequest($name, $arguments);
-        }
-    }
-
-    /**
-     * set the status code and message of the API call
-     * @param int $code
-     * @param string $message
-     * @return void
-     */
-    protected function setStatus($code, $message)
-    {
-        $this->errorCode = $code;
-        $this->errorMessage = $message;
-    }
-
-    protected function doRequest($call, array $params)
-    {
-        // Validate
-        if (!$this->getAPIkey()) {
-            throw new VGWrapException("You must submit the API key");
-        }
-
-        switch ($call) {
-            case 'getPlayerById':
-                // code
-                break;
-            case 'getPlayerByName':
-                // code
-                break;
-            // etc. I guess?
-        }
-
-        // Run the call
-        $response = $this->getClient()->get(self::END_POINT, +$params); // wat.
-        $this->response = $response; // do something with it, idk
-        // Parse response
-        return $this->parseResponse($this->response);
-    }
-
-    protected function parseResponse($response)
-    {
-        $this->response = json_decode($response, true);
-
-        return $this->response;
+        return call_user_func_array([$this->getClient(), $method], $parameters);
     }
 }

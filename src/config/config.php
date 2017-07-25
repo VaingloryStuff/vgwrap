@@ -8,9 +8,10 @@
 
 return [
     /**
-     * Vainglory developer API Key
+     * Vainglory developer API settings
      *
      * https://developer.vainglorygame.com/users/sign_in
      */
-    'api-key' => env('API_KEY', ''),
+    'baseURL' => 'https://api.dc01.gamelockerapp.com/shards/',
+    'api-key' => env('API_KEY', '')
 ];

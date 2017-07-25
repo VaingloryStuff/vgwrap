@@ -9,13 +9,17 @@ A Laravel wrapper for the Vainglory API
 
 ## Structure
 
-Some shitty structure.
+This project's structure.
 
 ```
-config/
 src/
+    config/
+    Facade.php
+    ServiceProvider.php
+    VGWrapClient.php
+    VGWrapException.php
 tests/
-vendor/
+...
 ```
 
 
@@ -30,11 +34,12 @@ $ composer require agangofkittens/vgwrap
 ## Usage
 
 ``` php
-$params = [
-	'region' => 'eu',
-	'name' => 'Adrame'
-];
-$response = VGWrap::getPlayerByName($params);
+// Fetch a player by ID
+$response = VGWrap::get('eu/player/id');
+$player = json_decode($response->getBody()->getContents());
+
+// Or using a shortcut
+$response = VGWrap::getData('eu/player/id');
 ```
 
 ## Change log

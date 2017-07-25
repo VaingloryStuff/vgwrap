@@ -27,12 +27,16 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function boot()
     {
+        $configPath = __DIR__ . '/config/config.php';
+
+        if (function_exists('config_path')) {
+            $publishPath = config_path('vgwrap.php');
+        } else {
+            $publishPath = base_path('config/vgwrap.php');
+        }
+
         // Publish config files
-        $this->publishes(
-            [
-                __DIR__ . '/config/config.php' => config_path('vgwrap.php'),
-            ], 'config'
-        );
+        $this->publishes([$configPath => $publishPath], 'config');
     }
 
     /**
@@ -42,8 +46,10 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function register()
     {
+        $configPath = __DIR__ . '/config/config.php';
+
         $this->app->bind('vgwrap', function ($app) {
-            return new VGWrapClient(config('vgwrap.api-key'));
+            return new VGWrapClient(config('vgwrap.api-key'), config('vgwrap.baseURL'));
         });
     }
 
