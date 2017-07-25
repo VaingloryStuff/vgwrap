@@ -49,7 +49,7 @@ class ServiceProvider extends IlluminateServiceProvider
         $configPath = __DIR__ . '/config/config.php';
 
         $this->app->bind('vgwrap', function ($app) {
-            return new VGWrapClient(config('vgwrap.api-key'), config('vgwrap.baseURL'));
+            return new VGWrapClient(config('vgwrap.api-key'), config('vgwrap.base-uri'));
         });
     }
 

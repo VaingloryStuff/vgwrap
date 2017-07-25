@@ -12,6 +12,6 @@ return [
      *
      * https://developer.vainglorygame.com/users/sign_in
      */
-    'baseURL' => 'https://api.dc01.gamelockerapp.com/shards/',
+    'base-uri' => 'https://api.dc01.gamelockerapp.com/shards/',
     'api-key' => env('API_KEY', '')
 ];

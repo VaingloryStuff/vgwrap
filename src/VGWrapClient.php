@@ -36,16 +36,16 @@ class VGWrapClient
 
     protected $api_key;
 
-    protected $baseURL;
+    protected $base_uri;
 
     /**
      * @param $api_key
      * @param array
      */
-    public function __construct($api_key, $baseURL)
+    public function __construct($api_key, $base_uri)
     {
         $this->setAPIkey($api_key);
-        $this->setbaseURL($baseURL);
+        $this->setBaseUri($base_uri);
     }
 
     /**
@@ -69,12 +69,12 @@ class VGWrapClient
     /**
      * Set base URL
      *
-     * @param $baseURL
+     * @param $base_uri
      * @return mixed
      */
-    public function setBaseURL($baseURL)
+    public function setBaseUri($base_uri)
     {
-        return ($this->baseURL = $baseURL);
+        return ($this->base_uri = $base_uri);
     }
 
     /**
@@ -82,9 +82,9 @@ class VGWrapClient
      *
      * @return mixed
      */
-    public function getBaseURL()
+    public function getBaseUri()
     {
-        return $this->api_key;
+        return $this->base_uri;
     }
 
     /**
@@ -108,7 +108,7 @@ class VGWrapClient
     public function getClient(array $config = [])
     {
         $config = array_merge($config, [
-            'base_uri' => $this->getBaseURL(),
+            'base_uri' => $this->getBaseUri(),
             'headers' => [
                 'Authorization' => $this->getAPIkey(),
                 'Accept' => 'application/vnd.api+json',
@@ -133,6 +133,8 @@ class VGWrapClient
      */
     public function getData($uri, $options = [])
     {
+        // implode $options array
+
         return json_decode($this->getClient()->get($uri, $options)->getBody()->getContents());
     }
 
@@ -146,6 +148,8 @@ class VGWrapClient
      */
     public function request($method, $uri = '', array $options = [])
     {
+        // implode $options array
+
         return $this->client->request($method, $uri, $options);
     }
 

@@ -31,6 +31,25 @@ Via Composer
 $ composer require agangofkittens/vgwrap
 ```
 
+## Configuration
+
+In your `config/app.php` add `agangofkittens\vgwrap\ServiceProvider::class,` to the end of providers array.
+``` php
+'providers' => [
+    App\Providers\RouteServiceProvider::class,
+    ...
+    'agangofkittens\vgwrap\ServiceProvider',
+],
+```
+At the end of `config/app.php` add `'VGWrap' => agangofkittens\vgwrap\Facade::class,` to the aliases array.
+``` php
+'aliases' => [
+    'App' => Illuminate\Support\Facades\App::class,
+    ...
+    'VGWrap' => agangofkittens\vgwrap\Facade::class,
+],
+```
+
 ## Usage
 
 ``` php
