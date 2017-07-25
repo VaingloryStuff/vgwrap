@@ -58,6 +58,7 @@ class VGWrapClient
     {
         return ($this->api_key = $api_key);
     }
+
     /**
      * @return string API_KEY
      */
