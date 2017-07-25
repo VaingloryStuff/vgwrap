@@ -20,12 +20,12 @@
     "issues": "https://github.com/agangofkittens/vgwrap/issues"
   },
   "require": {
-    "php": "~5.6|~7.0",
-    "guzzlehttp/guzzle": "6.*"
+    "php": "^7.0",
+    "guzzlehttp/guzzle": "^6.3"
   },
   "require-dev": {
-    "phpunit/phpunit": "~4.0||~5.0||~6.0",
-    "squizlabs/php_codesniffer": "^2.3"
+    "phpunit/phpunit": "^6.2",
+    "squizlabs/php_codesniffer": "^3.0"
   },
   "autoload": {
     "psr-4": {
