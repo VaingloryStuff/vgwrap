@@ -25,20 +25,31 @@ use Psr\Http\Message\ResponseInterface;
  * @method ResponseInterface delete($uri, array $options = [])
  *
  * @package agangofkittens\vgwrap
- * @author agangofkittens <agangofktitens@gmail.com>
+ * @author  agangofkittens <agangofktitens@gmail.com>
+ * @version 1.0.3
+ * @access  public
+ * @see     https://adrame.tk/vgwrap
  */
 class VGWrapClient
 {
     /**
-     * @var \GuzzleHttp\Client
+     * @var object \GuzzleHttp\Client
      */
     private $client;
 
+    /**
+     * @var string api_key
+     */
     protected $api_key;
 
+    /**
+     * @var string base_uri
+     */
     protected $base_uri;
 
     /**
+     * Constructor method for VGWrapClient class
+     *
      * @param $api_key
      * @param array
      */
@@ -49,7 +60,7 @@ class VGWrapClient
     }
 
     /**
-     * Set API key
+     * Set the API key
      *
      * @param $api_key
      * @return mixed
@@ -60,6 +71,8 @@ class VGWrapClient
     }
 
     /**
+     * Get the API key
+     *
      * @return string API_KEY
      */
     public function getAPIkey()

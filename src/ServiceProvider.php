@@ -11,6 +11,12 @@ namespace agangofkittens\vgwrap;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Config;
 
+/**
+ * Class ServiceProvider
+ *
+ * @author agangofkittens
+ * @package agangofkittens\vgwrap
+ */
 class ServiceProvider extends IlluminateServiceProvider
 {
     /**
