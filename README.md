@@ -22,7 +22,6 @@ tests/
 ...
 ```
 
-
 ## Install
 
 Via Composer
@@ -51,11 +50,12 @@ At the end of `config/app.php` add `'VGWrap' => agangofkittens\vgwrap\Facade::cl
 ```
 
 Next publish the config file:
-``` shell
+``` bash
 $ php artisan vendor:publish
 ```
 
 Finally set your [API key](https://developer.vainglorygame.com/) by updating the `api-id` value in `config/vgwrap.php` or your `.env` file.
+If necessary you can also modify the API endpoints in the aforementioned `config/vgwrap.php` file.
 
 ## Usage
 
