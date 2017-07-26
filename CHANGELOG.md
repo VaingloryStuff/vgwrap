@@ -2,21 +2,13 @@
 
 All Notable changes to `vgwrap` will be documented in this file.
 
-Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## NEXT - YYYY-MM-DD
+## [Unreleased]
 
-### Added
-- Nothing
+## [1.0.0] - 2017-07-26
+- First public release.
+- Fixed some mistakes in the README.md file.
 
-### Deprecated
-- Nothing
-
-### Fixed
-- Nothing
-
-### Removed
-- Nothing
-
-### Security
-- Nothing
+[Unreleased]: https://github.com/agangofkittens/vgwrap/compare/v1.0.0...HEAD

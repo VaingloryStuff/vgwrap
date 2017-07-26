@@ -60,12 +60,24 @@ Then set your [API key](https://developer.vainglorygame.com/) by updating the `a
 ## Usage
 
 ``` php
-// Fetch a player by ID
-$response = \VGWrap::get('eu/player/id');
+// Fetch a player by using a playerName filter
+$response = \VGWrap::get('shards/eu/players', [
+    'query' => [
+        'filter' => [
+            'playerNames' => 'Adrame'
+        ]
+    ]
+]);
 $player = json_decode($response->getBody()->getContents());
 
 // Or using a shortcut
-$response = \VGWrap::getData('eu/player/id');
+$response = \VGWrap::getData('shards/eu/players', [
+    'query' => [
+        'filter' => [
+            'playerNames' => 'Adrame'
+        ]
+    ]
+]);
 ```
 
 ## Change log
