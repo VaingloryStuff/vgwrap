@@ -134,8 +134,6 @@ class VGWrapClient
      */
     public function getData($uri, $options = [])
     {
-        // implode $options array
-
         return json_decode($this->getClient()->get($uri, $options)->getBody()->getContents());
     }
 
@@ -149,8 +147,6 @@ class VGWrapClient
      */
     public function request($method, $uri = '', array $options = [])
     {
-        // implode $options array
-
         return $this->client->request($method, $uri, $options);
     }
 
