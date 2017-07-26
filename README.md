@@ -80,7 +80,7 @@ $response = \VGWrap::getData('shards/eu/players', [
 ]);
 ```
 
-_For more examples and usage, please refer to the [documentation][https://vgwrap.emillie.ml]._
+_For more examples and usage, please refer to the [documentation][link-docs]._
 
 ## Change log
 
@@ -119,3 +119,4 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-author]: https://github.com/agangofkittens
 [link-contributors]: ../../contributors
 [link-styleci]: https://styleci.io/repos/98232070
+[link-docs]: https://vgwrap.emillie.ml
