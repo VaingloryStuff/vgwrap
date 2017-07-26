@@ -1,10 +1,12 @@
 {
   "name": "agangofkittens/vgwrap",
   "type": "library",
-  "description": "Laravel wrapper for Vainglory API",
+  "description": "A Laravel 5 wrapper for the Vainglory API",
   "keywords": [
     "agangofkittens",
-    "vgwrap"
+    "vgwrap",
+    "vainglory",
+    "wrapper"
   ],
   "homepage": "https://github.com/agangofkittens/vgwrap",
   "license": "MIT",

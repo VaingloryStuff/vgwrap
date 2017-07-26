@@ -5,7 +5,7 @@
 [![StyleCI][ico-styleci]][link-styleci]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-A Laravel wrapper for the Vainglory API
+A Laravel 5 wrapper for the Vainglory API
 
 ## Structure
 
@@ -50,12 +50,12 @@ At the end of `config/app.php` add `'VGWrap' => agangofkittens\vgwrap\Facade::cl
 ],
 ```
 
-Then publish the config file:
+Next publish the config file:
 ``` shell
 $ php artisan vendor:publish
 ```
 
-Then set your [API key](https://developer.vainglorygame.com/) by updating the `api-id` value in `config/vgwrap.php` or your `.env` file.
+Finally set your [API key](https://developer.vainglorygame.com/) by updating the `api-id` value in `config/vgwrap.php` or your `.env` file.
 
 ## Usage
 
