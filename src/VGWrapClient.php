@@ -28,7 +28,7 @@ use Psr\Http\Message\ResponseInterface;
  * @author  agangofkittens <agangofktitens@gmail.com>
  * @version 1.0.3
  * @access  public
- * @see     https://adrame.tk/vgwrap
+ * @see     https://vgwrap.emillie.ml
  */
 class VGWrapClient
 {
