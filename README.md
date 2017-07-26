@@ -80,6 +80,8 @@ $response = \VGWrap::getData('shards/eu/players', [
 ]);
 ```
 
+_For more examples and usage, please refer to the [documentation][https://vgwrap.emillie.ml]._
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
